@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>话费充值</title>
+    <link rel="stylesheet" href="../css/pubilc.css">
+    <link rel="stylesheet" href="../css/less.css">
+    <script src="../js/zepto.js"></script>
+    <script>
+        (function (doc, win) {var docEl = doc.documentElement, resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize', recalc = function () {var clientWidth = docEl.clientWidth;if (!clientWidth) return;docEl.style.fontSize = 20 * (clientWidth / 320) + 'px';};if (!doc.addEventListener) return;win.addEventListener(resizeEvt, recalc, false);doc.addEventListener('DOMContentLoaded', recalc, false);})(document, window);
+    </script>
+</head>
+<body>
+    <div class="push">
+        <ul class="phone clearfix">
+            <li class="takeIn">
+                <input type="text" id="rechange-phonenumber" pattern="[0-9]*"/>
+                <p id="mobile-type">用户绑定号码（浙江移动）</p>
+            </li>
+            <li class="change-number" id="changenumber">切换号码</li>
+        </ul>
+        <ul class="phoneNumber">
+            <li><span class="number">13968214758</span><span class="name">习近平</span></li>
+            <li><span class="number">13968214758</span><span class="name">彭丽媛</span></li>
+            <li><span class="number">13968214758</span><span class="name">李克强</span></li>
+            <li>清空历史充值号码</li>
+        </ul>
+        <ul class="checkbox clearfix">
+            <li class="short">
+                <i class="iconfont">
+                    <span ></span>
+                </i>
+                <span>24小时到帐</span>
+            </li>
+            <li class="long">
+                <i class="iconfont">
+                    <span></span>
+                </i>
+                <span>48小时到帐</span>
+            </li>
+        </ul>
+        <ul class="moneyList">
+            <a href="pay.html">
+                <h4>10元</h4>
+                <p>售价:&yen9.98</p>
+            </a>
+            <a href="pay.html">
+                <h4>
+                    20元</h4>
+                <p>售价:&yen19.98</p>
+            </a>
+            <a href="pay.html">
+                <h4>30元</h4>
+                <p>售价:&yen29.98</p>
+            </a>
+            <a href="pay.html">
+                <h4>10元</h4>
+                <p>售价:&yen9.98</p>
+            </a>
+            <a href="pay.html">
+                <h4>20元</h4>
+                <p>售价:&yen19.98</p>
+            </a>
+            <a href="pay.html">
+                <h4>30元</h4>
+                <p>售价:&yen29.98</p>
+            </a>
+            <a href="pay.html">
+                <h4>10元</h4>
+                <p>售价:&yen9.98</p>
+            </a>
+            <a href="pay.html">
+                <h4>20元</h4>
+                <p>售价:&yen19.98</p>
+            </a>
+            <a href="pay.html">
+                <h4>30元</h4>
+                <p>售价:&yen29.98</p>
+            </a>
+        </ul>
+        <div class="aLink">
+            <a href="myaccount.html">
+                <i class="iconfont">
+                    &#xe654;
+                </i>
+                我的账户
+            </a>
+            <a href="reacord.html">
+                <i class="iconfont">
+                    &#xe72a;
+                </i>
+                我的充值记录
+            </a>
+        </div>
+    </div>
+    <script src="../js/comman.js"></script>
+    <script src="../js/charge.js"></script>
+
+</body>
+</html>

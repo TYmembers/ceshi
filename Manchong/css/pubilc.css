@@ -1,0 +1,178 @@
+html,
+body,
+div,
+span,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+em,
+img,
+ins,
+kbd,
+q,
+button small,
+strong,
+b,
+ol,
+ul,
+li,
+a,
+footer,
+header,
+nav,
+input,
+button,
+section {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+    box-sizing: border-box;
+    list-style: none;
+}
+.base-btn {
+    display: block;
+    background-color: #13baff;
+    width: 710px;
+    line-height: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    color: #fff;
+    font-size: 50px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+body {
+    line-height: 1;
+}
+nav ul {
+    list-style: none;
+}
+.clearfix {
+    zoom: 1;
+    *zoom: 1;
+}
+.clearfix:after {
+    display: block;
+    content: '';
+    clear: both;
+    height: 0;
+    width: 0;
+}
+input[type=button],
+input[type=submit],
+input[type=file],
+button {
+    cursor: pointer;
+    -webkit-appearance: none;
+}
+@font-face {font-family: 'iconfont';
+    src: url('../icon/iconfont.eot'); /* IE9*/
+    src: url('../icon/iconfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('../icon/iconfont.woff') format('woff'), /* chrome、firefox */
+    url('../icon/iconfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+    url('../icon/iconfont.svg#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+    display: inline-block;
+    text-align: center;
+    font-family: "iconfont" !important;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
+}
+.pull-left {
+    float: left !important;
+}
+.pull-right {
+    float: right !important;
+}
+a {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    background: transparent;
+    text-decoration: none;
+}
+::-webkit-input-placeholder {
+    color: #999;
+}
+::-moz-placeholder {
+    color: #999;
+}
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #cccccc;
+    margin: 1em 0;
+    padding: 0;
+}
+input,
+select {
+    font-size: 30px;
+    border: 0;
+    outline: none;
+    vertical-align: middle;
+}
+/*//弹窗样式*/
+.full-mask{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.1);
+    z-index: 100;
+}
+.alert-box{
+    width: 86%;
+    height: 9rem;
+    border:1px solid #ddd;
+    position: absolute;
+    left:7%;
+    top:35%;
+    border-radius: 5px;
+    padding: 0 4%;
+    background-color: #fff;
+}
+.alert-content-box{
+    box-sizing: border-box;
+    width: 100%;
+    height:80%;
+    font-size: 0.7rem;
+    text-align: center;
+}
+.alert-content-box p{
+    color: #aaa;
+}
+.alert-button{
+    width: 100%;
+    height: 20%;
+    margin-bottom: 0;
+    text-align: center;
+    border-top: 1px solid #dddddd;
+    line-height: 1.8rem;
+    font-size: 0.7rem;
+    cursor: pointer;
+    color:#555;
+}
+.alerticon{
+    width: 4rem;
+    height: 4rem;
+    font-size: 4rem;
+    color: #5ab75c;
+    margin-top: 1.2rem;
+}

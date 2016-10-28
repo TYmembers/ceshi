@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>我的账户</title>
+    <link rel="stylesheet" href="../css/pubilc.css">
+    <link rel="stylesheet" href="../css/less.css">
+    <script src="../js/zepto.js"></script>
+    <script>
+        (function (doc, win) {var docEl = doc.documentElement, resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize', recalc = function () {var clientWidth = docEl.clientWidth;if (!clientWidth) return;docEl.style.fontSize = 20 * (clientWidth / 320) + 'px';};if (!doc.addEventListener) return;win.addEventListener(resizeEvt, recalc, false);doc.addEventListener('DOMContentLoaded', recalc, false);})(document, window);
+    </script>
+</head>
+<body>
+<div class="account">
+    <div class="goback clearfix">
+        <a class="history" href="javascript:history.go(-1)">
+            <i class="iconfont">
+                &#xe61d;
+            </i>
+        </a>
+        <button class="loginOut">
+            退出
+        </button>
+    </div>
+    <div class="header">
+        <div class="imgbox">
+            <img src="" alt="这里有个头像">
+        </div>
+        <h4 >欢迎您，13906518912</h4>
+    </div>
+    <div class="newList">
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <a href="" class="about">
+        关于我们
+    </a>
+</div>
+<script src="../js/comman.js"></script>
+<script src="../js/account.js"></script>
+</body>
+</html>

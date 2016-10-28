@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>登录</title>
+    <link rel="stylesheet" href="../css/pubilc.css">
+    <link rel="stylesheet" href="../css/less.css">
+    <script src="../js/zepto.js"></script>
+    <script>
+        (function (doc, win) {var docEl = doc.documentElement, resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize', recalc = function () {var clientWidth = docEl.clientWidth;if (!clientWidth) return;docEl.style.fontSize = 20 * (clientWidth / 320) + 'px';};if (!doc.addEventListener) return;win.addEventListener(resizeEvt, recalc, false);doc.addEventListener('DOMContentLoaded', recalc, false);})(document, window);
+    </script>
+</head>
+<body>
+    <div class="login">
+        <ul class="loginInput">
+            <li class="phone">
+                <span>手机号：</span>
+                <input type="text" id="phonenumber" placeholder="请您输入手机号码" pattern="[0-9]*"/>
+                <i class="iconfont right" id="icon-right">&#xe623;</i>
+            </li>
+            <li class="code">
+                <span>验证码：</span>
+                <input id="authenticode" type="text" placeholder="请您输入验证码" pattern="[0-9]*" />
+                <input class="beforesend" id="authenticode-button" type="button" value="验证码" />
+            </li>
+        </ul>
+        <div class="loginbtn">
+            <button id="login-button">登录</button>
+        </div>
+    </div>
+    <script src="../js/main.js"></script>
+    <script src="../js/comman.js"></script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+{
+  "name": "hp",
+  "version": "1.0.0",
+  "description": "n react-router",
+  "main": "app.js",
+  "scripts": {
+    "start": "webpack-dev-server --hot --progress --colors",
+    "build": "webpack"
+  },
+  "keywords": [
+    "123"
+  ],
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-imageisux": "^1.0.5",
+    "gulp-less": "^3.1.0",
+    "gulp-uglify": "^2.0.0",
+    "gulp-watch": "^4.3.9",
+    "history": "^1.13.1",
+    "reqwest": "^2.0.5",
+    "sockjs-client": "^1.1.1",
+    "webpack": "^1.13.1",
+    "webpack-dev-server": "^1.12.1"
+  },
+  "dependencies": {},
+  "author": "123",
+  "license": "ISC"
+}

@@ -1,0 +1,539 @@
+html {
+  height: 100%;
+  font-size: 20px;
+  font-family: "微软雅黑";
+}
+body {
+  height: 100%;
+  width: 100%;
+  max-width: 750px;
+  margin: 0 auto;
+  overflow-y: hidden;
+}
+html:hover {
+  /* background: -webkit-radial-gradient(center 40%,circle,#ace,#fff,#c63737 80%);*/
+}
+.welcome {
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  background: url("../img/image/circle.png") bottom center no-repeat;
+  background-size: 100% auto;
+  background-color: #c63737;
+}
+.welcome .logo {
+  width: 100%;
+  height: 16.75rem;
+}
+.welcome .logo .tianyuan {
+  width: 90%;
+  margin: 0.6rem 5% 0.5rem 5%;
+}
+.welcome .logo .cheap {
+  width: 80%;
+  margin: 0 10%;
+}
+
+.welcome .button {
+  font-size: 1rem;
+  position: absolute;
+  width: 85%;
+  height: 2.5rem;
+  line-height: 2.5rem;
+  border: 2px solid #fff;
+  border-radius: 5px;
+  left: 50%;
+  background: rgba(255, 255, 255, 0);
+  color: #fff;
+  bottom: 5.5rem;
+  transform: translateX(-50%) scale(1);
+}
+
+.welcome .copyright{width:100%;position: absolute;bottom:0.75rem;color:#fff;font-size: 0.5rem;text-align: center;}
+.login .loginInput span,
+.login .loginInput input {
+  display: inline-block;
+}
+.login .loginInput .phone,
+.login .loginInput .code {
+  font-size: 0;
+  line-height: 2rem;
+}
+.login .loginInput .phone input,
+.login .loginInput .code input {
+  border-radius: 4px;
+  height: 2rem;
+  line-height: 2rem;
+  font-size: 0.6rem;
+}
+.login .loginInput .phone input[type='text'],
+.login .loginInput .code input[type='text'] {
+  text-indent: 10px;
+  border: 1px solid #eaeaea;
+}
+.login .loginInput .phone span,
+.login .loginInput .code span
+{
+  color: #666;
+  font-weight: bold;
+  width: 18%;
+  vertical-align: middle;
+  text-align: right;
+  font-size: 0.6rem;
+}
+.login i.iconfont{
+  font-size: 0.8rem;
+  line-height: 2rem;
+  color:#5ab75c;
+  font-weight: bold;
+  vertical-align: middle;
+  margin-left: 0.5rem;
+  display: none;
+}
+.login .loginInput .phone {
+  padding-top: 0.5rem;
+}
+.login .loginInput .phone input {
+  width: 11.25rem;
+}
+.login .loginInput .code {
+  margin-top: 1rem;
+}
+.login .loginInput .code input[type='text'] {
+  width: 6.4rem;
+}
+.login .loginInput .code .beforesend{
+  font-weight: 600;
+  font-size: 0.6rem;
+  width: 4.7rem;
+  background-color: #aaa;
+  color: #fff;
+  margin-left: 0.2rem;
+  disabled:"true";
+}
+.login .loginInput .code .sendcode{
+  font-weight: 600;
+  font-size: 0.6rem;
+  width: 4.7rem;
+  background-color: #ffb31f;
+  color: #fff;
+  margin-left: 0.2rem;
+}
+.login .loginbtn {
+  position: fixed;
+  bottom: 0.5rem;
+  width: 90%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.login .loginbtn button {
+  line-height: 2.1rem;
+  width: 100%;
+  text-align: center;
+  background-color: #c63636;
+  color: #fff;
+  font-size: 1.1rem;
+  border-radius: 6px;
+}
+.push {
+  padding: 0 0.4rem;
+}
+.push .phone {
+  padding: 0.6rem 0;
+}
+.push .phone li {
+  float: left;
+}
+.push .phone .takeIn {
+  width: 11.9rem;
+}
+.push .phone .takeIn input {
+  width: 100%;
+  font-size: 1.4rem;
+}
+.push .phone .takeIn p {
+  color: #fcc051;
+  text-indent: 0.2rem;
+  font-size: 0.5rem;
+}
+.push .phone .change-number {
+  width: 3.2rem;
+  font-size: 0.5rem;
+  line-height: 1.3rem;
+  height: 1.3rem;
+  color: #c63636;
+  border: 1px solid #c63636;
+  border-radius: 2px;
+  text-align: center;
+  cursor: pointer;
+}
+.push .phoneNumber{
+  display: none;
+  width: 15.2rem;
+  margin-right: 0.4rem;
+  position: absolute;
+  background-color: #fff;
+}
+.push .phoneNumber li{
+  width:100%;
+  border-bottom: 1px solid #eaeaea ;
+  height: 1.5rem;
+  line-height: 1.5rem;
+  padding: 0;
+  position: relative;
+  font-size: 0.7rem;
+  color: #676767;
+}
+.push .phoneNumber li:nth-child(4){
+  color: #c63636;
+  text-align: center;
+  border: none;
+}
+/*.push .phoneNumber .number{*/
+  /*font-size: 0.75rem;*/
+/*}*/
+.push .phoneNumber .name{
+  position: absolute;
+  color:#999;
+  right: 0;
+}
+.push .checkbox{
+  border-top: 1px solid #eaeaea ;
+}
+.push .checkbox li:nth-of-type(1) {
+  border-right: 1px solid #eaeaea;
+}
+.push .checkbox .short {
+  text-align: left;
+}
+.push .checkbox .long {
+  text-align: right;
+}
+.push .checkbox li {
+  margin: 0.4rem 0;
+  width: 50%;
+  float: left;
+  font-size: 0.7rem;
+  padding: 0.2rem 0.7rem;
+}
+.push .checkbox li i {
+  line-height: 0.5rem;
+  /*-webkit-transform: scale(2);*/
+  height: 0.5rem;
+  width: 0.5rem;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  box-shadow: 0 0 2px 0 #000;
+  display: inline-block;
+  text-align: center;
+  /*position: relative;*/
+}
+.push .checkbox>li>i>span {
+  display: inline-block;
+  width: 0.5rem;
+  height: 0.5rem;
+  background-color:#fff;
+  border-radius: 50%;
+  /*display: none;*/
+}
+.push .checkbox span.disc{
+  background-color:#c63636;
+}
+.push .moneyList {
+  margin-top: 0.7rem;
+  font-size: 0;
+}
+.push .moneyList a {
+  width: 3.98rem;
+  height: 3rem;
+  border: 2px solid #eaeaea;
+  border-radius: 0.2rem;
+  display: inline-block;
+  margin-bottom: 0.55rem;
+  margin-right: 1.61rem ;
+  padding: 0.6rem 0;
+  color: #676767;
+}
+.push .moneyList a:link {
+  color: #c63636;
+  border-color: #c63636;
+}
+.push .moneyList a:hover {
+  color: #c63636;
+  border-color: #c63636;
+}
+.push .moneyList .active {
+  color: #c63636;
+  border-color: #c63636;
+}
+.push .moneyList a:active {
+  color: #c63636;
+  border-color: #c63636;
+}
+
+.push .moneyList a h4,
+.push .moneyList a p {
+  width: 100%;
+  text-align: center;
+}
+.push .moneyList a p{
+  margin-top: 0.2rem;
+}
+.push .moneyList a h4 {
+  font-weight: lighter;
+  font-size: 1rem;
+}
+.push .moneyList a p {
+  font-size: 0.6rem;
+}
+.push .moneyList a:nth-of-type(3n) {
+  margin-right: 0;
+}
+
+.push .aLink {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2.2rem;
+  line-height: 2.2rem;
+  background-color: #c63636;
+  font-size: 0;
+}
+.push .aLink a {
+  width: 50%;
+  vertical-align: middle;
+  font-size: 0.65rem;
+  text-align: center;
+  display: inline-block;
+  color: #fff;
+}
+.push .aLink a .iconfont {
+  font-size: 0.9rem;
+  font-weight: lighter;
+}
+.push .aLink a:nth-of-type(1) {
+  border-right: 1px solid #fff;
+}
+.account .goback {
+  height: 1.5rem;
+  background: url("../img/image/cheaptist.png") no-repeat center center;
+  background-size: 46% auto;
+  background-color: #e06c6c;
+}
+.account .goback .loginOut,
+.account .goback .history {
+  color: #fff;
+  font-size: 0.5rem;
+}
+.account .goback .loginOut {
+  text-align: center;
+  border: 1px solid #fff;
+  line-height: 0.9rem;
+  width: 2rem;
+  float: right;
+  margin: 0.2rem 0.5rem 0 0;
+  border-radius: 2px;
+}
+.account .goback .history {
+  font-size: 0.8rem;
+  vertical-align: middle;
+  margin-left: 0.5rem;
+}
+.account .header {
+  position: relative;
+  height: 8.5rem;
+  background: url("../img/image/tiancangcang.jpg") no-repeat center center;
+  background-size: 100%;
+}
+.account .header h4 {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  color: #fff;
+  line-height: 1.3rem;
+  font-size: 0.6rem;
+  text-align: center;
+  font-weight: 400;
+}
+.account .header .imgbox {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 0.7rem;
+  width: 5.5rem;
+  height: 5.5rem;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.4);
+  overflow: hidden;
+}
+.account .header .imgbox img {
+  width: 100%;
+  height: 100%;
+}
+.account .newList {
+  width: 15.2rem;
+  height: 12.95rem;
+  background: #CCC;
+  margin: 0.2rem auto;
+  overflow-x: hidden;
+}
+.account .newList ul li {
+  height: 6rem;
+  background-color: #666;
+  margin-bottom: 0.5rem;
+}
+.account .about {
+  width: 15.2rem;
+  line-height: 2.2rem;
+  margin: 0 auto;
+  color: #fff;
+  border-radius: 6px;
+  display: block;
+  text-align: center;
+  font-size: 1rem;
+  background: #c63636;
+}
+.record .goback {
+  padding: 0 0.4rem;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  height: 1.3rem;
+  background: url("../img/image/cheaptist.png") no-repeat center center;
+  background-size: 46% auto;
+  background-color: #e06c6c;
+  margin-bottom: 13px;
+}
+.record .goback .iconfont {
+  position: absolute;
+  left: 0;
+  line-height: 1.3rem;
+  color: #f5f5f5;
+  font-size: 0.6rem;
+  font-weight: lighter;
+  margin-left: 0.4rem;
+}
+.record .Relist:nth-last-of-type(1) {
+  margin-bottom: 3.2rem;
+}
+.record .Relist {
+  padding: 0.3rem;
+  font-size: 0.7rem;
+}
+.record .Relist .month {
+  width: 2.65rem;
+  color: #c63636;
+  line-height: 0.8rem;
+  text-align: center;
+  border-bottom: 2px solid #c63636;
+  margin-bottom: 0.46rem;
+}
+.record .Relist li {
+  margin-bottom: 0.3rem;
+}
+.record .Relist li .date {
+  font-size: 0.4rem;
+  background-color: #838383;
+  color: #fff;
+  padding: 3px;
+  display: inline-block;
+}
+.record .Relist li .detail {
+  font-size: 0;
+  padding: 0.4rem 0;
+  line-height: 1.4rem;
+  border: 1px solid #eaeaea;
+  margin-bottom: 0.3rem;
+  color: #737373;
+}
+.record .Relist li .detail .iconfont {
+  float: left;
+  line-height: 1.4rem;
+  width: 1.5rem;
+  font-size: 1.4rem;
+}
+.record .Relist li .detail .dx {
+  color: #0f298d;
+}
+.record .Relist li .detail .lt {
+  color: #d72221;
+}
+.record .Relist li .detail .yd {
+  color: #006fca;
+}
+.record .Relist li .detail span {
+  font-size: 0.6rem;
+  display: inline-block;
+}
+.record .Relist li .detail span:nth-of-type(1) {
+  margin-right: 0.1rem;
+}
+.record .Relist li .detail span:nth-last-child(1) {
+  font-size: 0.5rem;
+  float: right;
+  width: 2.6rem;
+  min-width: 56px;
+  text-align: center;
+  border-left: 1px solid #eaeaea;
+  color: #63c673;
+}
+.record .btnBox {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.5rem 0;
+  background: #fff;
+}
+.record .btnBox .logOut {
+  display: inline-block;
+  line-height: 2.1rem;
+  color: #fff;
+  text-align: center;
+  border-radius: 4px;
+  font-size: 1.1rem;
+  width: 15.4rem;
+  background: #c63636;
+}
+.pay {
+  padding: 0 0.4rem;
+}
+.pay .actList {
+  display: block;
+  padding: 0.5rem 0.8rem;
+  border-bottom: 1px solid #ccc;
+}
+.pay .actList .wechat {
+  font-size: 2.2rem;
+  color: #27a720;
+}
+.pay .actList .zhifubao {
+  font-size: 2.2rem;
+  color: #009bed;
+}
+.pay .actList .payAct {
+  display: inline-block;
+}
+.pay .actList h4 {
+  color: #333;
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+}
+.pay .actList p {
+  color: #9f9f9f;
+  font-size: 0.5rem;
+}
+.pay .goback {
+  position: fixed;
+  bottom: 0.3rem;
+  display: inline-block;
+  line-height: 2.1rem;
+  color: #fff;
+  text-align: center;
+  border-radius: 4px;
+  font-size: 1.1rem;
+  width: 15.4rem;
+  background: #c63636;
+}
