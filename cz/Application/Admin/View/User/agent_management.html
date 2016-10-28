@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户管理</title>
+    <link rel="stylesheet" href="__PUBLIC__/Admin/css/main.css">
+    <script src="__PUBLIC__/Admin/js/jquery-1.8.3.min.js"></script>
+</head>
+<body>
+<!--导航-->
+<include file="Public:nav" />
+<!--输入管理员密码弹窗-->
+    <div class="alert-box alert-admin-box">
+        <div class="alert-header">!提示<span class="close-btn">×</span></div>
+        <div class="alert-body">
+            <p>请输入管理员密码</p>
+            <input type="text" required="required" id="pass"><br>
+            <div class=" money-btn" onclick="pass()">确定</div>
+        </div>
+    </div>
+<!--打款弹窗-->
+<div class="alert-box alert-money-box">
+    <div class="alert-header">打款<span class="close-btn">×</span></div>
+    <div class="alert-body">
+        <p>
+            <span class="lable">账户余额: </span>
+            <strong class="moneyin">1522.25</strong>
+            <input type="text" id="price">
+            <span class="operation" onclick="paying()">打入</span>
+        </p>
+        <p>
+            <span class="lable">返利余额: </span>
+            <strong class="moneyout">1522.25</strong>
+            <span class="operation" onclick="balance()">转为余额</span>
+        </p>
+        <p><span class="lable">折扣：</span><input type="text"></p>
+        <div class="yes-btn">确定</div>
+    </div>
+</div>
+<!--营业执照弹窗-->
+<div class="fullmask">
+    <div class="licence-box">
+        <i class="close-icon">×</i>
+        <img alt="营业执照暂未上传">
+    </div>
+</div>
+
+<div class="w-1204 mainbox">
+    <div class="userbox">
+        <a href="{:U('user_management')}" >管理账户</a>
+        <a href="{:U('agent_management')}" class="active">经销商账户</a>
+    </div>
+    <div class="sortbox">
+        <form action="{:U('agent_management')}" method="get">
+            <label>手机查询：</label><input type="tel" id="tel" name="tel" placeholder="{$where['tel']==''?'请输入用户手机号':''}" value="{$where['tel']!=''?$where['tel']:''}">
+            <label>用户查询：</label><input type="text" id="uid" name="uid" placeholder="{$where['uid']==''?'请输入用户ID':''}" value="{$where['uid']!=''?$where['uid']:''}">
+            <lable>筛选日期 :</lable>
+            <div class="date">
+                <input type="date" id="starttime" name="starttime" placeholder="{if($where['uid']!='') echo $where['uid']}">
+            </div>
+            <span>—</span>
+            <div class="date">
+                <input type="date" id="overtime" name="overtime" placeholder="{if($where['uid']!='') echo $where['uid']}">
+            </div>
+            <input type="button" value="查询" onclick="this.form.submit()">
+        </form>
+    </div>
+    <hr>
+    <table class="order-table">
+        <tr >
+            <th>注册时间</th><th>公司（门店）名称</th>
+            <th>公司门店地址</th><th>用户ID</th>
+            <th>绑定手机</th><th>营业执照（三证合一）</th>
+            <th>代理商审核</th><th>操作</th>
+            <th>账户余额</th><th>返利余额</th>
+            <th class="orange"></th>
+        </tr>
+        <notempty name="list">
+            <foreach name="list" item="val">
+                <tr >
+                    <td>{$val['create_time']}</td><td>{$val['company']}</td>
+                    <td>{$val['work']}</td><td>{$val['uid']}</td>
+                    <td>{$val['tel']}</td>
+                    <td class="orange view-license" style="width:200px">
+                        <if condition="$val['license'] EQ ''">
+                        <else />
+                            <img src="__ROOT__/Uploads/Img/{$val['license']}" width="20%">
+                        </if>
+                        查看
+                    </td>
+                    <td>
+                        <if condition="$val['state'] EQ 1">
+                            
+                        <elseif condition="$val['state'] EQ 2" />
+                            审核未通过
+                        <elseif condition="$val['state'] EQ 4" />
+                            审核通过
+                        <else />
+                            待审核
+                        </if>
+                    </td>
+                    <td>
+                        <if condition="$val['state'] EQ 3">
+                            <select name="pass" class="sel">
+                                <option value="1">请操作</option>
+                                <option value="4">通过</option>
+                                <option value="2">不通过</option>
+                            </select>
+                        <else />
+                            暂无操作
+                        </if>
+                    </td>
+                    <td class="mybalance">
+                        <if condition="$val['balance'] EQ 'zero'">
+                            0.000
+                        <else />
+                            {$val.balance}
+                        </if>
+                    </td>
+                    <td class="myrebate">
+                        <if condition="$val['commission'] EQ 'zero'">
+                            0.000
+                        <else />
+                            {$val.commission}
+                        </if>
+                    </td>
+                    <td class="orange"><span onclick="details('{$val['uid']}')">详情</span><span class="paying">打款</span></td>
+                </tr>
+            </foreach>
+        </notempty>
+    </table>
+    <ul class="paging clear">
+        {$pageButton}
+    </ul>
+</div>
+<script src="__PUBLIC__/Admin/js/main.js"></script>
+</body>
+<script type="text/javascript">
+function details(id){
+    var url='__ROOT__';
+    location.href=url+"/Order/user_order?uid="+id;
+}
+$(".sel").change(function(){
+    var type=$(this).val();
+    var uid=$(this).parent().parent().children().eq(3).html();
+    $.post("{:U('update')}",{id:uid,type:type},
+        function(data){
+            if(data==1){
+                alert("操作成功");
+                location.replace(location.href);
+            }else{
+                alert("操作失败");
+            }
+        }
+    )
+})
+
+function pass(){
+
+    var pass=$('#pass').val();
+    $.post("{:U('pass')}",{pass:pass},function(data){
+        if(data==1){
+            $(".alert-money-box").show();
+        }else{
+            alert(data);
+            $(".alert-money-box").hide();
+        }
+    })
+}
+
+//打款
+function paying(){
+    var uid=localStorage.userID;
+    var price=$('#price').val();
+    $.post("{:U('paying')}",{uid:uid,price:price},function(data){
+        if(data==1){
+            alert("打款成功");
+            $(".alert-money-box").hide();
+            location.replace(location.href);
+        }else{
+            alert(data);
+        }
+    })
+}
+
+//转为余额
+function balance(id){
+    var uid=localStorage.userID;
+    $.post("{:U('balances')}",{uid:uid},function(data){
+        if(data==1){
+            alert("转换成功");
+            $(".alert-money-box").hide();
+            location.replace(location.href);
+        }else{
+            alert(data);
+        }
+    })
+}
+</script>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>统计报表</title>
+    <link rel="stylesheet" href="__PUBLIC__/Admin/css/main.css">
+    <script src="__PUBLIC__/Admin/js/jquery-1.8.3.min.js"></script>
+</head>
+<body>
+<!--//导航-->
+<include file="Public:nav" />
+<!--主题内容-->
+    <div class="w-1204 mainbox">
+        <!--筛选部分-->
+        <form action="{:U('statistics')}" method="post">
+            <div class="sortbox">
+                <lable>筛选时间 :</lable>
+                <select class="r50" id="opttime" name="operation">
+                    <option value="1" {$map['operation']==1?'selected':''}>今天</option>
+                    <option value="2" {$map['operation']==2?'selected':''}>昨天</option>
+                    <option value="3" {$map['operation']==3?'selected':''}>最近三天</option>
+                    <option value="4" {$map['operation']==4?'selected':''}>最近一周</option>
+                    <option value="5" {$map['operation']==5?'selected':''}>最近一个月</option>
+                    <option value="6" {$map['operation']==6?'selected':''}>最近三个月</option>
+                    <option value="7" {$map['operation']==7?'selected':''}>半年</option>
+                    <option value="8" {$map['operation']==8?'selected':''}>一年</option>
+                    <option value="9" {$map['operation']==9?'selected':''}>两年</option>
+                    <option value="10" {$map['operation']==10?'selected':''}>三年</option>
+                </select>
+                <lable>筛选日期 :</lable>
+                <div class="date">
+                    <input type="date" id="starttime" name="starttime">
+                </div>
+                <span>—</span>
+                <div class="date">
+                    <input type="date" id="overtime" name="overtime">
+                </div>
+                <input type="button" value="搜索" onclick='this.form.submit()'>
+            </div>
+        </form>
+        <hr>
+        <!--表格部分-->
+        <table>
+            <tr class="mean">
+                <th>注册用户</th><th>代理商充值统计</th>
+                <th>代理商统计</th><th>充值成功累计</th>
+                <th>充值失败累计</th><th>支付手续费</th>
+                <th>销售总额</th><th>净利润</th>
+            </tr>
+            <tr class="mean">
+                <td>{$list['usernum']}</td>
+                <td>{$list['dealerpay']}</td>
+                <td>{$list['dealernum']}</td>
+                <td>{$list['pass']}</td>
+                <td>{$list['over']}</td>
+                <td>{$list['poundage']}</td>
+                <td>{$list['price']}</td>
+                <td>{$list['profit']}</td>
+            </tr>
+        </table>
+    </div>
+</body>
+<script type="text/javascript">
+$("#opttime").change(function(){
+    this.form.submit();
+})
+</script>
+</html>

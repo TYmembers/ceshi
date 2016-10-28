@@ -1,0 +1,22 @@
+<header>
+    <div class="w-1204">
+        <div class="navtop clear">
+            <div class="logobox fl">
+                <div class="logo fl"></div>
+                <div class="name fl">9158充值</div>
+            </div>
+            <div class="adminbox fl">
+                <span>欢迎您，杭州天缘网络技术有限公司</span>
+                <a><a href="{:U('Login/logout')}">退出</a></a>
+            </div>
+        </div>
+        <div class="nav clear">
+            <a href="{:U('Order/user_order')}" class="{$nav=='user_order'?'active':''} fl">普通用户订单</a>
+            <a href="{:U('Order/agent_order')}" class="{$nav=='agent_order'?'active':''} fl">代理商订单</a>
+            <a href="{:U('User/user_management')}" class="{$nav=='user'?'active':''} fl">用户管理</a>
+            <a href="{:U('Setup/setup')}" class="{$nav=='setup'?'active':''} fl">充值设置</a>
+            <a href="{:U('Account/account_management')}" class="{$nav=='admin'?'active':''} fl">账户管理</a>
+            <a href="{:U('Statistics/statistics')}" class="{$nav=='statistics'?'active':''} fl">统计报表</a>
+        </div>
+    </div>
+</header>

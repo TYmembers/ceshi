@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户管理</title>
+    <link rel="stylesheet" href="__PUBLIC__/Admin/css/main.css">
+    <script src="__PUBLIC__/Admin/js/jquery-1.8.3.min.js"></script>
+</head>
+<body>
+<!--导航-->
+<include file="Public:nav" />
+<!--弹窗-->
+</div>
+    <div class="w-1204 mainbox">
+        <div class="userbox">
+            <a href="{:U('user_management')}" class="active">管理账户</a>
+            <a href="{:U('agent_management')}">经销商账户</a>
+        </div>
+        <div class="sortbox">
+            <form action="{:U('user_management')}" method="get">
+                <label>手机查询：</label><input type="tel" id="tel" name="tel" placeholder="{$where['tel']==''?'请输入用户手机号':''}" value="{$where['tel']!=''?$where['tel']:''}">
+                <label>用户查询：</label><input type="text" id="uid" name="uid" placeholder="{$where['uid']==''?'请输入用户ID':''}" value="{$where['uid']!=''?$where['uid']:''}">
+                <lable>筛选日期 :</lable>
+                <div class="date">
+                    <input type="date" id="starttime" name="starttime" placeholder="{if($where['uid']!='') echo $where['uid']}">
+                </div><span>—</span>
+                <div class="date">
+                    <input type="date" id="overtime" name="overtime" placeholder="{if($where['uid']!='') echo $where['uid']}">
+                </div>
+                <input type="button" value="查询" onclick="this.form.submit()">
+            </from>
+        </div>
+        <hr>
+        <table class="order-table">
+            <tr >
+                <th>注册时间</th><th>用户ID</th>
+                <th>手机号码</th><th>最近消费时间</th>
+                <th>消费记录</th><th>申请成为代理商</th>
+                <th>状态</th><th>操作</th>
+            </tr>
+            <notempty name="list">
+                <foreach name="list" item="val">
+                    <tr >
+                        <td>{$val.create_time}</td><td>{$val.uid}</td>
+                        <td>{$val.tel}</td><td>{$val.last_time}</td>
+                        <td class="orange" onclick="details('{$val['uid']}')">查看订单</td>
+                        <td>
+                            <if condition="$val['state'] EQ 1">
+                                未申请
+                            <elseif condition="$val['state'] EQ 2" />
+                                申请未通过
+                            <elseif condition="$val['state'] EQ 3" />
+                                申请中
+                            <else />
+                                申请已通过
+                            </if>
+                        </td>
+                        <td>
+                            <if condition="$val['state'] EQ 1">
+              
+                            <elseif condition="$val['state'] EQ 3" />
+                                未审核
+                            <else />
+                                已审核
+                            </if>
+                        </td>
+                        <td>
+                            <if condition="$val['state'] EQ 3">
+                                <select class="sel" name="pass">
+                                    <option value="1">请操作</option>
+                                    <option value="4">通过</option>
+                                    <option value="2">不通过</option>
+                                </select>
+                            <else />
+                                暂无操作
+                            </if>
+                        </td>
+                    </tr>
+                </foreach>
+            </notempty>
+        </table>
+        <ul class="paging clear">
+            {$pageButton}
+        </ul>
+    </div>
+    <script src="__PUBLIC__/Admin/js/main.js"></script>
+</body>
+<script type="text/javascript">
+function details(id){
+    var url='__ROOT__';
+    location.href=url+"/Order/user_order?uid="+id;
+}
+$(".sel").change(function(){
+    var type=$(this).val();
+    var uid=$(this).parent().parent().children().eq(1).html();
+    $.post("{:U('update')}",{id:uid,type:type},
+        function(data){
+            if(data==1){
+                alert("操作成功");
+                location.replace(location.href);
+            }else{
+                alert('操作失败');
+            }
+        }
+    )
+})
+</script>
+</html>

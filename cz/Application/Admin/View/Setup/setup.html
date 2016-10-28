@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>充值设置</title>
+    <link rel="stylesheet" href="__PUBLIC__/Admin/css/main.css">
+    <script src="__PUBLIC__/Admin/js/jquery-1.8.3.min.js"></script>
+</head>
+<body>
+<!--//导航-->
+<include file="Public:nav" />
+    <div class="w-1204 paddingbox">
+        <ul class="setup-header clear">
+            <li class="city fl">设置选择城市</li>
+            <li class="fl">运营商</li>
+            <li class="fl">本金</li>
+            <li class="fl">折扣价（%）</li>
+            <li class="fl">销售价</li>
+            <li class="fl"> 折算利润</li>
+        </ul>
+
+        <form id="setup-form" class="setup-body" name="form1" action="{:U('save')}" method="post">
+            <ul class=" clear">
+                <li class="city fl">
+                    <select name="selectp" onChange="selectcityarea('selectp','selectc','form1');" name="province">
+                        <option value="0" selected>请选择省份</option>
+                    </select>
+                    <select name="selectc" name="city">
+                        <option value="0" selected>请选择城市</option>
+                    </select>
+                </li>
+                <li class="fl">
+                    <select id="mobileOperator" name="dealer">
+                        <option value="1" {$where['operator']=='1'?'selected':''}>中国移动</option>
+                        <option value="2" {$where['operator']=='2'?'selected':''}>中国联通</option>
+                        <option value="3" {$where['operator']=='3'?'selected':''}>中国电信</option>
+                    </select>
+                </li>
+                <li class="fl">
+                    <input class="border" type="text" disabled id="corpus" name="corpus" value="{$list.corpus}">
+                </li>
+                <li class="fl">
+                    <input class="border" type="text" disabled id="rebate" name="rebate" value="{$list.discount}">
+                </li>
+                <li class="fl">
+                    <input type="text" value="{$list.price}" readonly id="price" name="price">
+                </li>
+                <li class="fl">
+                    <input type="text" value="{$list.profit}" readonly id="gain" name="gain">
+                </li>
+            </ul>
+            <hr>
+            <div class="btnbox">
+                <input type="button" value="修改" class="modify">
+                <input type="submit" value="保存" class="save">
+            </div>
+        </form>
+    </div>
+
+    <script src="__PUBLIC__/Admin/js/form.js"></script>
+    <script>
+        first("selectp","selectc","form1",0,0);
+    </script>
+    <script src="__PUBLIC__/Admin/js/main.js"></script>
+</body>
+<script>
+$("#sel").change(function(){
+        alert($("#sel option:selected").val());
+    })
+
+    $('input').change(function(){
+        if(isNaN($('#corpus').val())==false){
+            var corpus=parseFloat($('#corpus').val());
+        }else{
+            alert('请在本金输入框内填写数字')
+        }
+        if(isNaN($('#rebate').val())==false){
+            var rebate=parseFloat($('#rebate').val());
+        }else{
+            alert('请在折扣输入框内填写数字')
+        }
+
+         
+        var gain=corpus*rebate/100;
+        var price=(corpus+gain).toFixed(3);
+        gain=(gain).toFixed(3);
+        $('#gain').val(gain);
+        $('#price').val(price);
+    })
+
+$('#mobileOperator').change(function(){
+    var dealer=$('#mobileOperator option:selected').val();
+    location.href ="setup?dealer="+dealer;
+})
+</script>
+</html>

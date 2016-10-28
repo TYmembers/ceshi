@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>代理商订单</title>
+    <link rel="stylesheet" href="__PUBLIC__/Admin/css/main.css">
+    <script src="__PUBLIC__/Admin/js/jquery-1.8.3.min.js"></script>
+        <style>
+    	.navtop .logobox .logo {
+		  width: 65px;
+		  height: 65px;
+		  background: url("__PUBLIC__/Admin/img/logo.png");
+		  background-size: cover;
+}
+		a{
+		color:#ccc;
+		font-family:微软雅黑;
+		text-decoration:none;
+	}
+	a:hover{
+		color:#993300;
+		text-decoration:underline;
+	}
+    </style>
+    <script>
+    	function select_company(company){
+    		window.location="{:U('Order/agent_order')}"+"?company="+company;
+    	}
+    </script>
+</head>
+<body>
+<!--导航-->
+<include file="Public:nav" />
+<!--弹窗-->
+    <div class="alert-box">
+    <div class="alert-header">请选择导出日期<span class="close-btn">×</span></div>
+    <div class="alert-body">
+    <form action="{:U('Order/agent_output')}" method='get'>
+        <div class="date"><input type="date" name='start' value="请选择起始日期"></div><span>—</span><div class="date"><input type="date" name='close' value="请选择结束日期"></div>
+        <div class="yes-btn" ><input type="submit"  value="确定"/></div>
+    </form>
+    </div>
+</div>
+    <div class="w-1204 mainbox">
+    <div class="sortbox">
+    <form action="{:U('Order/agent_order')}" method='get'>
+        <label>手机查询: </label><input type='text' name='tel' value='{$get.tel}' placeholder='请输入充值的手机号'>
+        <label>订单查询: </label><input type='text' name='orderid'  value='{$get.orderid}' placeholder='请输入订单号'>
+        <label>用户查询: </label><input type='text' name='uid'  value='{$get.uid}' placeholder='请输入用户的手机号'>
+        <lable>筛选日期 :</lable>
+        <div class="date"><input type="date" name='start' value="{$get.start}"></div><span>—</span><div class="date"><input type="date" name='close' value="{$get.close}"></div>
+            <input type="submit" style="background:#c63636" value="查询"/>
+    </div>
+    <hr>
+    <div class="output-btn fr">导出订单</div>
+    <table class="order-table">
+        <tr >
+            <th>创建时间</th><th>订单号</th>
+            <th>用户ID</th><th>手机号码</th>
+            <th>到帐时间</th><th>运营商</th>
+            <th>是否导出</th><th>公司（门店）名称</th>
+            <th>充值金额</th>
+            <th>类型</th><th>支付金额</th>
+            <th>支付方式</th><th>状态</th>
+            <th class="orange">操作</th>
+        </tr>
+        <foreach name='data' item='v'>
+        <tr >
+            <td>{$v.create_time|date='Y-m-d H:s:i',###}</td><td>{$v.orderid}</td>
+            <td>{$v.uid}</td><td>{$v.tel}</td>
+           <if condition="$v['arrival'] == 1 ">
+                <td>12小时</td>
+                <else/>
+                <td>24小时</td>
+           </if>
+		<if condition="$v['operator'] == 1 ">
+                <td>移动</td>
+                <elseif condition="$v['operator'] == 2"/>
+                <td>联通</td>
+                <else/>
+                <td>电信</td>
+        </if>
+            <if condition="$v['export'] == 1">
+                <td>未导出</td>
+                <else/>
+                <td>导出</td>
+                </if>
+            <td><a  onclick="select_company('{$v.company}')">{$v.company}</a></td>
+            <td>{$v.recharge}元</td>
+            <if condition="$v['genre'] ==1">
+                <td>话费</td>
+                <else/>
+                <td>流量</td>
+                </if>
+            <td>{$v.payment}元</td>
+            <if condition="$v['mode'] == 1">
+                <td>支付宝</td>
+                <else />
+                <td>微信</td>
+                </if>
+            <td>待受理</td>
+            <td class="orange"><a href='#'>已充值</a>/<a href='#'>充值失败</a></td>
+        </tr>
+        </foreach>      
+    </table>
+    <div class="pages">{$pagestr}</div>
+</div>
+
+    <script src="__PUBLIC__/Admin/js/main.js"></script>
+ 	<style>
+		.pages{
+			width:100%;
+			text-align:right;
+			padding:10px 0;
+			clear:both;
+		}
+		.page a,.pages .current{
+			font-size:12px;
+			font-family:Arial;
+			margin:0 2px;
+		}
+		.pages a,.pages .current{
+			border:1px solid #5FA623;
+			background:#fff;
+			padding:2px 6px;
+			text-decoration:none
+		}
+		.pages .current,.pages a:hover{
+			background:#7AB63F;
+			color:#fff;
+		}
+	</style>
+</body>
+</html>

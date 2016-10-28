@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>账户管理</title>
+    <link rel="stylesheet" href="__PUBLIC__/Admin/css/main.css">
+    <script src="__PUBLIC__/Admin/js/jquery-1.8.3.min.js"></script>
+</head>
+<body>
+<!--//导航-->
+    <include file="Public:nav" />
+<!--修改登录密码的弹窗-->
+    <div class="alert-box login-box">
+        <div class="alert-header">修改登录密码<span class="close-btn">×</span></div>
+        <div class="alert-body">
+            <p> <label>请输入旧的密码：</label><input type="text" id="oldpass1"></p>
+            <p><label>请输入新的密码：</label><input type="text" id="newpass1"></p>
+            <div class="yes-btn" onclick="pass({$_SESSION['login']['id']},'password')">确定</div>
+        </div>
+    </div>
+<!--修改支付密码的弹窗-->
+    <div class="alert-box pay-box">
+        <div class="alert-header">修改支付密码<span class="close-btn">×</span></div>
+        <div class="alert-body">
+            <p> <label>请输入旧的密码：</label><input type="text" id="oldpass2"></p>
+            <p><label>请输入新的密码：</label><input type="text" id="newpass2"></p>
+            <div class="yes-btn" onclick="pass({$_SESSION['login']['id']},'pass')">确定</div>
+        </div>
+    </div>
+<!--修改权限的弹窗-->
+    <div class="modify-box">
+        <div class="alert-header">修改管理员权限<span class="close-btn">×</span></div>
+        <div class="modify-body clear">
+            <ul>
+                <li class="head">总管理<span class="triangle"></span></li>
+                <ul class="modify-lists">
+                    <li>用户管理</li>
+                    <li>充值设置</li>
+                    <li>账户管理</li>
+                    <li>统计报表</li>
+                </ul>
+            </ul>
+            <ul >
+                <li class="head newhead">已选择</li>
+                <li class="newli">
+                    <span class="content">用户管理</span>
+                    <span class="yes">√</span>
+                    <span class="no">-</span>
+                </li>
+                <li class="newli">
+                    <span class="content">充值设置</span>
+                    <span class="yes">√</span>
+                    <span class="no">-</span>
+                </li>
+                <li class="newli">
+                    <span class="content">账户管理</span>
+                    <span class="yes">√</span>
+                    <span class="no">-</span>
+                </li>
+                <li class="newli">
+                    <span class="content">统计报表</span>
+                    <span class="yes">√</span>
+                    <span class="no">-</span>
+                </li>
+            </ul>
+        </div>
+        <div class="yes-btn" onclick="root()">确定</div>
+
+    </div>
+<!--主要信息-->
+    <div class="w-1204 paddingbox">
+        <!--帐号信息-->
+        <div class="account-info">
+            <div class="list-top">
+                <div class="list-header">帐号信息</div>
+            </div>
+            <div class="list-body">
+                <ul class="clear">
+                    <li class="fl">
+                        <lable>登录名&nbsp;&nbsp;&nbsp; : </lable><span>{$_SESSION['login']['user']}</span>
+                    </li>
+                    <li class="fl">
+                        <lable>登录密码 : </lable><span class="orange changelog">修改</span>
+                    </li>
+                    <li class="fl">
+                        <lable>手机号码 : </lable><span>{$_SESSION['login']['tel']!=''? $_SESSION['login']['tel']:'未输入手机号'}</span>
+                    </li>
+                    <li class="fl">
+                        <lable>支付密码 : </lable><span class="orange changepay">修改</span>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+        <!--管理员列表-->
+        <div class="admin-list">
+            <ul class="authority">
+                <i class="close">×</i>
+            </ul>
+
+            <div class="list-top">
+                <div class="list-header">管理员列表</div>
+            </div>
+            <table class="list-body">
+                <tr>
+                    <th>角色名称</th><th>操作员</th>
+                    <th>账号</th><th>密码</th>
+                    <th>权限</th><th>操作</th>
+                </tr>
+                <noempty name="list">
+                    <foreach name="list" item="val">
+                        <tr>
+                            <td>{$val.role}</td> <td>{$val.name}</td>
+                            <td>{$val.user}</td> <td>********</td>
+                            <td>
+                                <if condition="$val['root'] == ''">
+                                    无任何权限
+                                <else />
+                                    查看
+                                </if>
+                            </td>
+                            <td>
+                                <input type="button" value="删除" onclick="del({$val.id})">
+                                <input class="modify" type="button" value="修改权限">
+                            </td>
+                        </tr>
+                    </foreach>
+                </noempty>
+            </table>
+        </div>
+
+        <!--添加用户-->
+        <ul class="add-user clear">
+            <li class="fl">
+                <div class="lihead">添加管理员</div>
+                <div class="libody">
+                    <lable>角色名称：</lable>
+                    <input type="text" id="role1"  required="required">
+                    <span>*</span>
+                </div>
+                <div class="libody">
+                    <lable>&nbsp;&nbsp;&nbsp;操作员：</lable>
+                    <input type="text" id="name1"  required="required">
+                    <span>*</span>
+                </div>
+                <div class="libody">
+                    <lable>管理账号：</lable>
+                    <input type="text" id="user1"  required="required">
+                    <span>*</span>
+                </div>
+                <div class="libody">
+                    <lable>账号密码：</lable>
+                    <input type="password" id="password1"  required="required">
+                    <span>*</span>
+                </div>
+                <input type="submit" value="添加" class="subbtn" onClick="addadmin()" id="submit1">
+            </li>
+            <li  class="fl">
+                <div class="lihead">代理商</div>
+                <div class="libody">
+                    <lable for>公司名称：</lable>
+                    <input type="text" id="company" required="required">
+                    <span>*</span>
+                </div>
+                <div class="libody">
+                    <lable>账户名称：</lable>
+                    <input type="text" id="user2" required="required">
+                    <span>*</span>
+                </div>
+                <div class="libody">
+                    <lable>账户密码：</lable>
+                    <input type="password" id="password2" required="required">
+                    <span>*</span>
+                </div>
+                <div class="libody">
+                    <lable>绑定手机：</lable>
+                    <input type="tel" id="tel1" required="required">
+                    <span>*</span>
+                </div>
+                <input type="submit" value="添加" class="subbtn" onClick="addagent()">
+            </li>
+            <li  class="fl">
+                <div class="lihead">添加普通账户</div>
+                <div class="libody">
+                    <lable>账户名称：</lable>
+                    <input type="text" id="user3" required="required">
+                    <span>*</span>
+                </div>
+                <div class="libody">
+                    <lable>账户密码：</lable>
+                    <input type="password" id="password3" required="required">
+                    <span>*</span>
+                </div>
+                <div class="libody">
+                    <lable>绑定手机：</lable>
+                    <input type="tel" id="tel2" required="required">
+                    <span>*</span>
+                </div>
+                <input type="submit" value="添加" class="subbtn" onClick="adduser()">
+            </li>
+        </ul>
+    </div>
+    <script src="__PUBLIC__/Admin/js/main.js"></script>
+    <script src="__PUBLIC__/Admin/js/update.js"></script>
+</body>
+<script type="text/javascript">
+//添加管理员
+function addadmin(){
+    var role=$("#role1").attr("value");
+    var user=$("#user1").attr("value");
+    var name=$("#name1").attr("value");
+    var password=$("#password1").attr("value");
+
+    if(password.length<6){
+        alert('密码长度不能短于6位');
+        return false;
+    }
+    
+    if(role.length==0 || user.length==0 || name.length==0){
+        alert("请将信息填写完整");
+        return false;
+    }
+    $.post("{:U('addadmin')}",{role:role,user:user,name:name,password:password},
+        function(data){
+            if(data==1){
+                alert("添加管理员成功");
+                location.replace(location.href);
+            }else{
+                alert(data);
+            }
+        }
+    )
+}
+//添加经销商
+function addagent(){
+    var company=$("#company").attr("value");
+    var user=$("#user2").attr("value");
+    var tel=$("#tel1").attr("value");
+    var password=$("#password2").attr("value");
+    if(company.length==0 || user.length==0 || tel.length==0 || password.length==0){
+        alert("请将信息填写完整");
+        return false;
+    }
+    $.post("{:U('addagent')}",{company:company,user:user,tel:tel,pass:password,genre:2},
+        function(data){
+            if(data==1){
+                alert("添加经销商成功");
+                location.replace(location.href);
+            }else{
+                alert(data);
+            }
+        }
+    )
+}
+//添加普通用户
+function adduser(){
+    var user=$("#user3").attr("value");
+    var tel=$("#tel2").attr("value");
+    var password=$("#password3").attr("value");
+    if(user.length==0 || tel.length==0 || password.length==0){
+        alert("请将信息填写完整");
+        return false;
+    }
+    $.post("{:U('addagent')}",{user:user,tel:tel,pass:password,genre:1},
+        function(data){
+            if(data==1){
+                alert("添加用户成功");
+                location.replace(location.href);
+            }else{
+                alert(data);
+            }
+        }
+    )
+}
+
+//删除管理员
+function del(id){
+    if(confirm("确定要删除吗？")){
+        $.post("{:U('del')}",{id:id},
+            function(data){
+                if(data==1){
+                    alert("删除管理员成功");
+                    location.replace(location.href);
+                }else{
+                    alert(data);
+                }
+            }
+        )
+        return true;
+  }
+   else{
+        return false;
+   }
+    
+}
+
+//修改密码
+function pass(id,type){
+    var i=0
+    if(type=='password'){
+        i=1;
+    }else if(type=='pass'){
+        i=2;
+    }else{
+        return false;
+    }
+    var oldpass=$("#oldpass"+i).attr("value");
+    var newpass=$("#newpass"+i).attr("value");
+    if(oldpass.length==0 || newpass.length==0){
+        alert("请将信息填写完整");
+        return false;
+    }
+    $.post("{:U('update')}",{id:id,oldpass:oldpass,newpass:newpass,type:i},
+        function(data){
+            if(data==1){
+                alert("修改密码成功");
+                location.replace(location.href);
+            }else{
+                alert(data);
+            }
+        }
+    )
+}
+
+//修改权限
+function root(){
+    var select=[];
+    $.each($(".modify-box .newli"),function (i) {
+        if ($(".modify-box .newli").eq(i).css("display")=="block"){
+            select.push(i+1)
+        }
+    });
+    localStorage.select=select;
+
+    var root=localStorage.select;
+    var user=localStorage.account;
+
+    $.post("{:U('root')}",{user:user,root:root},
+        function(data){
+            if(data==1){
+                alert("权限修改成功");
+                $(".modify-box").hide();
+                select=[];
+                localStorage.select=[];
+                location.replace(location.href);
+            }else{
+                alert('权限修改失败');
+            }
+        }
+    )
+    
+}
+</script>
+</html>
